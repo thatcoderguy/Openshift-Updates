@@ -1,0 +1,33 @@
+---
+kind: ImageStreamList
+apiVersion: image.openshift.io/v1
+metadata:
+  name: rust-image-streams
+  annotations:
+    description: ImageStream definitions for Rust
+items:
+- kind: ImageStream
+  apiVersion: image.openshift.io/v1
+  metadata:
+    name: rust
+    annotations:
+      openshift.io/display-name: Rust
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Rust
+        description: Build and runRust applications on UBI 8. For more information
+          about using this builder image, including OpenShift conside
+        iconClass: icon-rust
+        tags: builder,rust,rust-toolset
+        supports: rust-toolset:latest,rust,rust-toolset,rust157
+        sampleRepo: https://github.com/thatcoderguy/gallery-util2.git
+        sampleContextDir: ''
+        sampleRef: rust
+        version: latest
+      referencePolicy:
+        type: Local
+      from:
+        kind: DockerImage
+        name: binksey/openshift-rust-lang:1.57
