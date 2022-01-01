@@ -2,9 +2,9 @@
     "kind": "ImageStreamList",
     "apiVersion": "image.openshift.io/v1",
     "metadata": {
-        "name": "rust-image-streams",
+        "name": "golang-image-streams",
         "annotations": {
-            "description": "ImageStream definitions for Rust"
+            "description": "ImageStream definitions for Golang"
         }
     },
     "items": [
@@ -12,9 +12,9 @@
             "kind": "ImageStream",
             "apiVersion": "image.openshift.io/v1",
             "metadata": {
-                "name": "rust",
+                "name": "go",
                 "annotations": {
-                    "openshift.io/display-name": "Rust"
+                    "openshift.io/display-name": "Go"
                 }
             },
             "spec": {
@@ -22,14 +22,14 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "Rust",
-                            "description": "Build and runRust applications on UBI 8. For more information about using this builder image, including OpenShift conside>
-                            "iconClass": "icon-rust",
-                            "tags": "builder,rust,rust-toolset",
-                            "supports": "rust-toolset:latest,rust,rust-toolset,rust157",
+                            "openshift.io/display-name": "Go",
+                            "description": "Build and run Go applications on UBI 8. For more information about using this builder image, including OpenShift conside>",
+                            "iconClass": "icon-go-gopher",
+                            "tags": "builder,go,golang,go-toolset,go117,golang117",
+                            "supports": "go-toolset:latest,go,go-toolset,golang,go117,golang117",
                             "sampleRepo": "https://github.com/thatcoderguy/gallery-util2.git",
                             "sampleContextDir": "",
-                            "sampleRef": "rust",
+                            "sampleRef": "master",
                             "version": "latest"
                         },
                         "referencePolicy": {
@@ -37,7 +37,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "binksey/openshift-rust-lang:1.57"
+                            "name": "registry.redhat.io/ubi8/go-toolset"
                         }
                     }
                 ]
