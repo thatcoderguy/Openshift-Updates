@@ -27,6 +27,13 @@ parameters:
     value: "2G"
     required: true
 
+  - name: ELASTICSEARCH_CPU_CORES
+    displayName: "ElasticSearch CPU Cored"
+    description: "Maximum numebr of CPU cores ElasticSearch can use."
+    value: "1"
+    required: true
+
+
   - name: ELASTICSEARCH_VOLUME_CAPACITY
     displayName: "ElasticSearch Volume Capacity"
     description: "Volume space available for elasticsearch data, e.g. 512Mi, 2Gi."
@@ -46,7 +53,6 @@ objects:
           port: "9300"
       selector:
         name: "${ELASTICSEARCH_NAME}"
-
   - kind: Route
     apiVersion: v1
     metadata:
@@ -80,9 +86,17 @@ objects:
             - env:
                 - name: ES_JAVA_OPTS
                   value: '-Xms${ELASTICSEARCH_JAVA_MEMORY} -Xmx${ELASTICSEARCH_JAVA_MEMORY}'
+                - name: discovery.type
+                  value: 'single-node'
               name: 'elasticsearch'
-              image: 'registry.connect.redhat.com/elastic/elasticsearch'
-              imagePullPolicy: Always
+              image: 'registry.connect.redhat.com/elastic/elasticsearch:latest'
+              imagePullPolicy: IfNotPresent
+              discovery:
+                type: single-node
+              resources:
+                limits:
+                memory: ${ELASTICSEARCH_JAVA_MEMORY}
+                cpu: ${ELASTICSEARCH_CPU_CORES}
               ports:
                 - containerPort: 9200
                   protocol: TCP
@@ -90,7 +104,7 @@ objects:
                   protocol: TCP
               readinessProbe:
                 failureThreshold: 3
-                initialDelaySeconds: 10
+                initialDelaySeconds: 30
                 periodSeconds: 10
                 successThreshold: 1
                 tcpSocket:
