@@ -20,7 +20,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "1.17.6",
                         "annotations": {
                             "openshift.io/display-name": "Go",
                             "description": "Build and run Go applications on UBI 8. For more information about using this builder image, including OpenShift conside>",
@@ -37,9 +37,9 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.redhat.io/ubi8/go-toolset"
+                            "name": "binksey/openshift-golang-full:1.17.5"
                         }
-                    }
+                    }               
                 ]
             }
         }
