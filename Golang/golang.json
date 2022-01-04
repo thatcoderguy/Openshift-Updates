@@ -27,8 +27,8 @@
                             "iconClass": "icon-go-gopher",
                             "tags": "builder,go,golang,go-toolset,go117,golang117",
                             "supports": "go-toolset:latest,go,go-toolset,golang,go117,golang117",
-                            "sampleRepo": "https://github.com/thatcoderguy/gallery-util2.git",
-                            "sampleContextDir": "",
+                            "sampleRepo": "https://github.com/go-chi/chi.git",
+                            "sampleContextDir": "/_examples/hello-world",
                             "sampleRef": "master",
                             "version": "latest"
                         },
