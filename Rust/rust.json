@@ -20,10 +20,10 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "1.57",
                         "annotations": {
                             "openshift.io/display-name": "Rust",
-                            "description": "Build and runRust applications on UBI 8. For more information about using this builder image, including OpenShift conside>
+                            "description": "Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.",
                             "iconClass": "icon-rust",
                             "tags": "builder,rust,rust-toolset",
                             "supports": "rust-toolset:latest,rust,rust-toolset,rust157",
@@ -37,7 +37,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "binksey/openshift-rust-lang:1.57"
+                            "name": "binksey/openshift-rust-lang"
                         }
                     }
                 ]

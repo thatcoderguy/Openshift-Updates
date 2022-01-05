@@ -1,32 +1,43 @@
-# golang-builder
-FROM golang:1.17.5
+FROM registry.fedoraproject.org/f33/s2i-base:latest
 
-ENV CGO_ENABLED=0 \
-    GOOS=linux \
-    GOCACHE=/tmp \
-    STI_SCRIPTS_PATH=/usr/libexec/s2i \
-    SOURCE_DIR=/go/src/app
+ENV NAME=golang \
+    VERSION=1.17.5 \
+    ARCH=x86_64
 
-LABEL io.k8s.description="Builder image for compiling and testing Go applications" \
-      io.k8s.display-name="golang-builder}" \
-      io.openshift.s2i.scripts-url=image://${STI_SCRIPTS_PATH}
-      
-# Copy the s2i scripts into the golang image
-# These scripts describe how to build & run the application, and extract artifacts 
-# for downstream builds
-COPY ./s2i/bin/ ${STI_SCRIPTS_PATH}
+ENV SUMMARY="Platform for building and running Go $VERSION based applications" \
+    DESCRIPTION="Go $VERSION available as container is a base platform for \
+building and running various Go $VERSION applications and frameworks. \
+Go is an easy to learn, powerful, statically typed language in the C/C++ \
+tradition with garbage collection, concurrent programming support, and memory safety features."
 
-# The $SOURCE_DIR is dependent on the upstream golang image, based on the 
-# $GOPATH, etc. variable set there
-#
-# Allow random UIDs to write to the $SOURCE_DIR (for OKD/OpenShift)
-RUN mkdir -p $SOURCE_DIR \
-      && chmod 0777 $SOURCE_DIR
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="Go $VERSION" \
+      io.openshift.tags="builder,golang,golang115,rh-golang115,go" \
+      com.redhat.component="$NAME" \
+      name="$FGC/$NAME" \
+      version="$VERSION" \
+      architecture="$ARCH" \
+      maintainer="Jakub Cajka <jcajka@fedoraproject.org>" \
+      usage="docker run $FGC/$NAME"
 
-WORKDIR $SOURCE_DIR
+RUN INSTALL_PKGS="golang" && \
+    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    dnf clean all -y
 
-# Drop root (as is tradition)
+# Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH.
+COPY ./s2i/bin/ $STI_SCRIPTS_PATH
+# Copy manpage
+#COPY ./root/help.1 /
+
+RUN chown -R 1001:0 $STI_SCRIPTS_PATH && chown -R 1001:0 /opt/app-root
+
 USER 1001
 
+EXPOSE 8080
+EXPOSE 3333
 
-CMD ["/usr/libexec/s2i/usage"]
+# Set the default CMD to print the usage of the language image.
+CMD $STI_SCRIPTS_PATH/usage
