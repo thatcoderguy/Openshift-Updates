@@ -24,7 +24,7 @@
                         "annotations": {
                             "openshift.io/display-name": "Java",
                             "description": "The Red Hat build of OpenJDK is a free and open source implementation of the Java Platform, Standard Edition (Java SE).",
-                            "iconClass": "icon-java",
+                            "iconClass": "icon-openjdk",
                             "tags": "builder,java,jdk,jdk18",
                             "supports": "java:latest,builder,java,jdk,jdk18",
                             "sampleRepo": "https://github.com/jboss-openshift/openshift-quickstarts.git",

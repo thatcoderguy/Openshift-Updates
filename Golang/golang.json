@@ -20,25 +20,25 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "1.17.8",
-                        "annotations": {
-                            "openshift.io/display-name": "Go",
-                            "description": "Go Toolset available as a container is a base platform for building and running various Go applications and frameworks. Go is an easy to learn, powerful, statically typed language in the C/C++ tradition with garbage collection, concurrent programming support, and memory safety features.",
-                            "iconClass": "icon-go-gopher",
-                            "tags": "builder,go,golang,go-toolset,go117,golang117",
-                            "supports": "go-toolset:latest,go,go-toolset,golang,go117,golang117",
-                            "sampleRepo": "https://github.com/go-chi/chi.git",
-                            "sampleContextDir": "/_examples/hello-world",
-                            "sampleRef": "master",
-                            "version": ""
-                        },
-                        "referencePolicy": {
-                            "type": "Local"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "binksey/openshift-golang-full:1.17.8"
-                        }
+		      "name": "1.17.5",
+		                            "annotations": {
+		                                "openshift.io/display-name": "Go",
+		                                "description": "Go Toolset available as a container is a base platform for building and running various Go applications and frameworks. Go is an easy to learn, powerful, statically typed language in the C/C++ tradition with garbage collection, concurrent programming support, and memory safety features.",
+		                                "iconClass": "icon-go-gopher",
+		                                "tags": "builder,go,golang,go-toolset,go117,golang117,go1175,golang1175",
+		                                "supports": "go-toolset:latest,go,go-toolset,golang,go117,golang117,go1175,golang1175",
+		                                "sampleRepo": "https://github.com/go-chi/chi.git",
+		                                "sampleContextDir": "/_examples/hello-world",
+		                                "sampleRef": "master",
+		                                "version": ""
+		                            },
+		                            "referencePolicy": {
+		                                "type": "Local"
+		                            },
+		                            "from": {
+		                                "kind": "DockerImage",
+		                                "name": "binksey/golang-openshift:1.17.5"
+		                            }
                     }
                 ]
             }
