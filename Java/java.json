@@ -1,0 +1,49 @@
+{
+    "kind": "ImageStreamList",
+    "apiVersion": "image.openshift.io/v1",
+    "metadata": {
+        "name": "java",
+        "annotations": {
+            "description": "ImageStream definitions for Java"
+        }
+    },
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "image.openshift.io/v1",
+            "metadata": {
+                "name": "java",
+                "annotations": {
+                    "openshift.io/display-name": "Java"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Java",
+                            "description": "The Red Hat build of OpenJDK is a free and open source implementation of the Java Platform, Standard Edition (Java SE).",
+                            "iconClass": "icon-java",
+                            "tags": "builder,java,jdk,jdk18",
+                            "supports": "java:latest,builder,java,jdk,jdk18",
+                            "sampleRepo": "https://github.com/jboss-openshift/openshift-quickstarts.git",
+                            "sampleContextDir": "",
+                            "sampleRef": "master",
+                            "version": ""
+                        },
+                        "referencePolicy": {
+                            "type": "Local"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "registry.redhat.io/redhat-openjdk-18/openjdk18-openshift"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+
