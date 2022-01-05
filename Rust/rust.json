@@ -24,8 +24,8 @@
                         "annotations": {
                             "openshift.io/display-name": "Rust",
                             "description": "Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.",
-                            "iconClass": "icon-rust",
-                            "tags": "builder,rust,rust-toolset",
+                            "iconClass": "icon-openshift",
+                            "tags": "builder,rust,rust-toolset,rust157",
                             "supports": "rust-toolset:latest,rust,rust-toolset,rust157",
                             "sampleRepo": "https://github.com/thatcoderguy/gallery-util2.git",
                             "sampleContextDir": "",
