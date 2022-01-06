@@ -24,7 +24,12 @@ spec:
             persistentVolumeClaim:
               claimName: photos
           containers:
-          - name: gallery-util-2ff
+          - env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            name: gallery-util-2ff
             image: 172.30.1.1:5000/test2/gallery-util-2ff
             volumeMounts:
             - mountPath: /mnt/photos
