@@ -34,4 +34,4 @@ spec:
             volumeMounts:
             - mountPath: /mnt/photos
               name: volume-e2asw
-          restartPolicy: OnFailure 
+          restartPolicy: Never 
