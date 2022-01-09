@@ -113,7 +113,14 @@ objects:
               volumeMounts:
                 - name: elasticsearch-data
                   mountPath: "/opt/elasticsearch/data"
+                - name: config
+                  mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+                  readOnly: true
+                  subPath: elasticsearch.yml
           volumes:
+            - name: config
+              configMap:
+                name: elasticsearch-config
             - name: elasticsearch-data
               persistentVolumeClaim:
                 claimName: ${ELASTICSEARCH_NAME}
@@ -130,3 +137,12 @@ objects:
       resources:
         requests:
           storage: '${ELASTICSEARCH_VOLUME_CAPACITY}'
+
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      namespace: infra
+      name: elasticsearch-config
+    data:
+      elasticsearch.yml: |-
+        xpack.monitoring.collection.enabled: true
