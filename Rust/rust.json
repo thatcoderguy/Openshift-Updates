@@ -37,7 +37,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "binksey/openshift-rust-lang"
+                            "name": "binksey/openshift-rust-lang:1.57"
                         }
                     }
                 ]
