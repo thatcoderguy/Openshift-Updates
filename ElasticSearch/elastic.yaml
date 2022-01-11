@@ -88,6 +88,10 @@ objects:
                   value: '-Xms${ELASTICSEARCH_JAVA_MEMORY} -Xmx${ELASTICSEARCH_JAVA_MEMORY}'
                 - name: discovery.type
                   value: 'single-node'
+                - name: path.data
+                  value: '/opt/elasticsearch/data/data'
+                - name: path.logs
+                  value: '/opt/elasticsearch/data/logs'
               name: 'elasticsearch'
               image: 'registry.connect.redhat.com/elastic/elasticsearch:latest'
               imagePullPolicy: IfNotPresent
