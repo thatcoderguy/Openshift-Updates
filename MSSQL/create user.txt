@@ -1,0 +1,14 @@
+sqlcmd -S <IP> -U <USR> -P <PASS>
+
+CREATE DATABASE <db name>
+GO
+
+USE <db name>
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'<name>')
+BEGIN
+    CREATE USER [<name>] FOR LOGIN [<name>]
+    EXEC sp_addrolemember N'db_owner', N'<name>'
+END;
+GO
