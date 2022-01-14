@@ -1,0 +1,124 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: sqlserver
+  annotations:
+    openshift.io/display-name: 'SQL Server Express 2019'
+    description: "SQL Server. You must have persistent volumes available in your cluster to use this template."
+    tags: "database"
+    iconClass: "icon-mssql"
+
+parameters:
+  - name: MSSQL_NAME
+    displayName: "MSSQL Name"
+    description: "A reference to MSSQL name."
+    from: "[a-zA-Z0-9]{10}"
+    value: "mssql"
+    required: true
+
+  - name: MSSQL_SA_PASSWORD
+    displayName: "MSSQL SA Password"
+    description: "Password for the SA account. Must be 8 chars minimum with one upper, lower and digit"
+    required: true
+
+  - name: MSSQL_CPU_CORES
+    displayName: "MSSQL CPU Cores"
+    description: "Maximum numebr of CPU cores MSSQL can use."
+    value: "1"
+    required: true    
+
+  - name: MSSQL_MEMORY
+    displayName: "MSSQL  Memory"
+    description: "Maximum amount of memory the MSSQL can use."
+    value: "2G"
+    required: true
+
+
+objects:
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: "${MSSQL_NAME}"
+    spec:
+      ports:
+        - name: "mssql-http"
+          port: 1433
+      selector:
+        name: "${MSSQL_NAME}"
+
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: "${MSSQL_NAME}"
+      label:
+        name: "${MSSQL_NAME}"
+    spec:
+      replicas: 1
+      selector:
+        name: "${MSSQL_NAME}"
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          labels:
+            name: "${MSSQL_NAME}"
+        spec:
+          containers:
+            - env:
+                - name: MSSQL_PID
+                  value: "Express"
+                - name: ACCEPT_EULA
+                  value: "Y"
+                - name: MSSQL_DATA_DIR
+                  value: "/var/opt/mssql/data"
+                - name: MSSQL_SA_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${MSSQL_NAME}-sa-password
+                      key: mssql_sa_password
+              name: 'sqlserver'
+              image: 'mcr.microsoft.com/mssql/rhel/server:2019-latest'
+              imagePullPolicy: IfNotPresent
+              resources:
+                limits:
+                memory: ${MSSQL_MEMORY}
+                cpu: ${MSSQL_CPU_CORES}
+              ports:
+                - containerPort: 1433
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                initialDelaySeconds: 30
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 1433
+                timeoutSeconds: 1
+                volumeMounts:
+                - mountPath: /var/opt/mssql/data
+                  name: mssql-data
+          volumes:
+            - name: mssql-db
+              persistentVolumeClaim:
+                claimName: ${MSSQL_NAME}
+      triggers:
+        - type: ConfigChange
+
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ${MSSQL_NAME}
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: '100G'
+
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      name: ${MSSQL_NAME}-sa-password
+    type: Opaque 
+    stringData:
+      mssql_sa_password: ${MSSQL_SA_PASSWORD}
