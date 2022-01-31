@@ -19,6 +19,27 @@
             },
             "spec": {
                 "tags": [
+                       {
+                        "name": "1.58.1",
+                        "annotations": {
+                            "openshift.io/display-name": "Rust",
+                            "description": "Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.",
+                            "iconClass": "icon-openshift",
+                            "tags": "builder,rust,rust-toolset,rust158",
+                            "supports": "rust-toolset:latest,rust,rust-toolset,rust158",
+                            "sampleRepo": "https://github.com/thatcoderguy/gallery-util2.git",
+                            "sampleContextDir": "",
+                            "sampleRef": "rust",
+                            "version": "latest"
+                        },
+                        "referencePolicy": {
+                            "type": "Local"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "binksey/openshift-rust-lang:1.58.1"
+                        }
+                    },
                     {
                         "name": "1.57",
                         "annotations": {

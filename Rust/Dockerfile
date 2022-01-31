@@ -5,7 +5,7 @@ FROM openshift/base-centos7
 
 EXPOSE 8080
 
-ENV RUST_VERSION 1.57
+ENV RUST_VERSION 1.58.1
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
@@ -13,9 +13,9 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     RUST_VERSION=1.57.0
 
 LABEL io.k8s.description="Platform for building and running Rust 1.57 applications" \
-      io.k8s.display-name="Rust 1.57.0" \
+      io.k8s.display-name="Rust 1.58.1" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,rust,rust157"
+      io.openshift.tags="builder,rust,rust158"
 
 RUN yum install -y yum-utils && \
     yum install -y centos-release-scl && \
