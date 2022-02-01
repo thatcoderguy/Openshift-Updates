@@ -1,4 +1,4 @@
-FROM quay.io/centos7/s2i-base-centos7
+FROM ubi8/s2i-base:1
 
 # This image provides an Apache+PHP environment for running PHP
 # applications.
@@ -13,8 +13,7 @@ EXPOSE 8443
 
 ENV PHP_VERSION=7.4 \
     PHP_VER_SHORT=74 \
-    NAME=php \
-    PATH=$PATH:/opt/rh/rh-php74/root/usr/bin
+    NAME=php
 
 ENV SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="PHP $PHP_VERSION available as container is a base platform for \
@@ -30,43 +29,55 @@ LABEL summary="${SUMMARY}" \
       io.k8s.description="${DESCRIPTION}" \
       io.k8s.display-name="Apache 2.4 with PHP ${PHP_VERSION}" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,${NAME},${NAME}${PHP_VER_SHORT},rh-${NAME}${PHP_VER_SHORT}" \
+      io.openshift.tags="builder,${NAME},${NAME}${PHP_VER_SHORT},${NAME}-${PHP_VER_SHORT}" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
       io.s2i.scripts-url="image:///usr/libexec/s2i" \
-      name="centos7/${NAME}-${PHP_VER_SHORT}-centos7" \
-      com.redhat.component="rh-${NAME}${PHP_VER_SHORT}-container" \
-      version="${PHP_VERSION}" \
+      name="ubi8/${NAME}-${PHP_VER_SHORT}" \
+      com.redhat.component="${NAME}-${PHP_VER_SHORT}-container" \
+      version="1" \
+      com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI" \
       help="For more information visit https://github.com/sclorg/s2i-${NAME}-container" \
-      usage="s2i build https://github.com/sclorg/s2i-php-container.git --context-dir=${PHP_VERSION}/test/test-app centos7/${NAME}-${PHP_VER_SHORT}-centos7 sample-server" \
+      usage="s2i build https://github.com/sclorg/s2i-php-container.git --context-dir=${PHP_VERSION}/test/test-app ubi8/${NAME}-${PHP_VER_SHORT} sample-server" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
-RUN yum install -y centos-release-scl && \
-    INSTALL_PKGS="rh-php74 rh-php74-php rh-php74-php-mysqlnd rh-php74-php-pgsql rh-php74-php-bcmath \
-                  rh-php74-php-gd rh-php74-php-intl rh-php74-php-ldap rh-php74-php-mbstring rh-php74-php-pdo \
-                  rh-php74-php-process rh-php74-php-soap rh-php74-php-opcache rh-php74-php-xml \
-                  rh-php74-php-gmp rh-php74-php-pecl-apcu httpd24-mod_ssl" && \
-    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
+RUN yum -y module enable php:$PHP_VERSION && \
+    INSTALL_PKGS="php php-mysqlnd php-pgsql php-bcmath \
+                  php-gd php-intl php-json php-ldap php-mbstring php-pdo \
+                  php-process php-soap php-opcache php-xml \
+                  php-gmp php-pecl-apcu php-pecl-zip mod_ssl hostname" && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    yum reinstall -y tzdata && \
     rpm -V $INSTALL_PKGS && \
-    yum -y clean all --enablerepo='*' && \
-    yum install epel-release  && \
-    ACCEPT_EULA=Y yum install msodbcsql17 unixODBC unixODBC-devel
-    
+    yum -y clean all --enablerepo='*'
 
 ENV PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/ \
     APP_DATA=${APP_ROOT}/src \
-    PHP_DEFAULT_INCLUDE_PATH=/opt/rh/rh-php74/root/usr/share/pear \
-    PHP_SYSCONF_PATH=/etc/opt/rh/rh-php74 \
-    PHP_HTTPD_CONF_FILE=rh-php74-php.conf \
+    PHP_DEFAULT_INCLUDE_PATH=/usr/share/pear \
+    PHP_SYSCONF_PATH=/etc \
+    PHP_HTTPD_CONF_FILE=php.conf \
     HTTPD_CONFIGURATION_PATH=${APP_ROOT}/etc/conf.d \
     HTTPD_MAIN_CONF_PATH=/etc/httpd/conf \
     HTTPD_MAIN_CONF_D_PATH=/etc/httpd/conf.d \
     HTTPD_MODULES_CONF_D_PATH=/etc/httpd/conf.modules.d \
     HTTPD_VAR_RUN=/var/run/httpd \
     HTTPD_DATA_PATH=/var/www \
-    HTTPD_DATA_ORIG_PATH=/opt/rh/httpd24/root/var/www \
-    HTTPD_VAR_PATH=/opt/rh/httpd24/root/var \
-    SCL_ENABLED=rh-php74
+    HTTPD_DATA_ORIG_PATH=/var/www \
+    HTTPD_VAR_PATH=/var
+    
+RUN yum install -y php-pear
+RUN yum install -y php-devel
+RUN pecl channel-update pecl.php.net
+RUN yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
+RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo
+RUN ACCEPT_EULA=Y yum install -y msodbcsql17 unixODBC unixODBC-devel
+RUN ACCEPT_EULA=Y yum install -y mssql-tools
+RUN pecl install sqlsrv
+RUN pecl install pdo_sqlsrv
+
+RUN echo "extension=pdo_sqlsrv.so" >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-pdo_sqlsrv.ini
+RUN echo "extension=sqlsrv.so" >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-sqlsrv.ini
+
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH

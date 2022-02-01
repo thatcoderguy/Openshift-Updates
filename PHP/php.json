@@ -14,7 +14,7 @@
 		},
 		"tags": [
 			{
-				"name": "latest",
+				"name": "7.4-mssql-rhel8",
 				"annotations": {
 					"description": "Build and run PHP applications on UBI. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/s2i-php-container/blob/master/7.4/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of PHP available on OpenShift, including major version updates.",
 					"iconClass": "icon-php",
@@ -25,8 +25,8 @@
 					"tags": "builder,php"
 				},
 				"from": {
-					"kind": "ImageStreamTag",
-					"name": "7.4-ubi8"
+					"kind": "DockerImage",
+					"name": "binksey/openshift-php-mssql:7.4-mssql-rhel8"
 				},
 				"generation": null,
 				"importPolicy": {},
