@@ -1,5 +1,7 @@
 sqlcmd -S <IP> -U <USR> -P <PASS>
 
+CREATE LOGIN <login_name> WITH PASSWORD = '<enterStrongPasswordHere>',
+
 CREATE DATABASE <db name>
 GO
 
