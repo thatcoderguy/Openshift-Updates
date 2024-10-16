@@ -84,7 +84,7 @@ objects:
           - env:
             - name: ELASTICSEARCH_URL
               value: ${ELASTICSEARCH_HOST_URL}
-            image: 'registry.connect.redhat.com/elastic/elasticsearch:latest'
+            image: 'registry.connect.redhat.com/elastic/kibana:8.15.2-465603dc'
             imagePullPolicy: IfNotPresent
             discovery:
               type: single-node
