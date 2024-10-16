@@ -80,7 +80,6 @@ objects:
             provider: openshift
           name: kibana
         spec:
-          serviceAccountName: kibana
           containers:
           - env:
             - name: ELASTICSEARCH_URL
