@@ -10,3 +10,7 @@ elasticsearch.username: "kibana"
 elasticsearch.password: "1I6wFbUczci7HCnoeXCA"
 monitoring.ui.container.elasticsearch.enabled: true
 xpack.security.encryptionKey: 2R2ifQWNs6Vtumi7hegMk4qVbuERy4BQ
+
+
+
+add to:  /usr/share/kibana/config
