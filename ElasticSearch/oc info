@@ -1,0 +1,8 @@
+add into oc
+
+
+https://catalog.redhat.com/software/containers/elastic/elasticsearch/5fac2d6dac3db90370a224c7?gs=&q=elasticsea&container-tabs=gti
+
+
+oc import-image elastic/elasticsearch:8.15.3-82db83de --from=registry.connect.redhat.com/elastic/elasticsearch:8.15.3-82db83de --confirm
+docker pull registry.connect.redhat.com/elastic/elasticsearch:8.15.3-82db83de
