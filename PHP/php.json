@@ -26,7 +26,7 @@
 				},
 				"from": {
 					"kind": "DockerImage",
-					"name": "registry.redhat.io/rhel9/php-82"
+					"name": "registry.redhat.io/rhel9/php-82:1-26.1726696863"
 				},
 				"generation": null,
 				"importPolicy": {},
