@@ -26,7 +26,7 @@
 				},
 				"from": {
 					"kind": "DockerImage",
-					"name": "https://hub.docker.com/repository/docker/binksey/php83-mssql-rhel9:latest"
+					"name": "binksey/php83-mssql-rhel9:latest"
 				},
 				"generation": null,
 				"imagePullPolicy": "IfNotPresent",
