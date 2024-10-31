@@ -14,7 +14,7 @@
 		},
 		"tags": [
 			{
-				"name": "php-82",
+				"name": "8.2",
 				"annotations": {
 					"description": "Build and run PHP applications on UBI. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/s2i-php-container/blob/master/7.4/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of PHP available on OpenShift, including major version updates.",
 					"iconClass": "icon-php",
@@ -36,7 +36,7 @@
 				}
 			},			
 			{
-				"name": "php-74",
+				"name": "7.4",
 				"annotations": {
 					"description": "Build and run PHP 7.4 applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/s2i-php-container/blob/master/7.4/README.md.",
 					"iconClass": "icon-php",
