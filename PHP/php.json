@@ -14,7 +14,7 @@
 		},
 		"tags": [
 			{
-				"name": "php83-mssql-rhel9:latest",
+				"name": "php83-mssql-rhel9:8.2",
 				"annotations": {
 					"description": "Build and run PHP applications on UBI. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/s2i-php-container/blob/master/7.4/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of PHP available on OpenShift, including major version updates.",
 					"iconClass": "icon-php",
@@ -26,7 +26,7 @@
 				},
 				"from": {
 					"kind": "DockerImage",
-					"name": "binksey/php83-mssql-rhel9:latest"
+					"name": "binksey/php83-mssql-rhel9:8.2"
 				},
 				"generation": null,
 				"imagePullPolicy": "IfNotPresent",
