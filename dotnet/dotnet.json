@@ -43,7 +43,7 @@
 			}
                     },
                     {
-                        "name": "8.0-ubi8",
+                        "name": "dotnet-8.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET (Latest)",
                             "description": "Build and run .NET applications. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/6.0/build/README.md. WARNING: By selecting this tag, your application will automatically update to use the latest version of .NET available on OpenShift, including major versions updates.",
@@ -66,7 +66,7 @@
 			}
                     },   
                     {
-                        "name": "7.0-ubi8",
+                        "name": "dotnet-7.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET 7 (UBI 8)",
                             "description": "Build and run .NET 7 applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/6.0/build/README.md.",
@@ -90,7 +90,7 @@
 			}
                     },                
                     {
-                        "name": "6.0-ubi8",
+                        "name": "dotnet-6.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET 6 (UBI 8)",
                             "description": "Build and run .NET 6 applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/6.0/build/README.md.",
@@ -114,7 +114,7 @@
 			}
                     },
                     {
-                        "name": "5.0-ubi8",
+                        "name": "dotnet-5.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET 5 (UBI 8)",
                             "description": "Build and run .NET 5 applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/5.0/build/README.md.",
@@ -135,7 +135,7 @@
                         }
                     },
                     {
-                        "name": "3.1-ubi8",
+                        "name": "dotnet-3.1-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET Core 3.1 (UBI 8)",
                             "description": "Build and run .NET Core 3.1 applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/3.1/build/README.md.",
