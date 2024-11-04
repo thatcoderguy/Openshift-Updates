@@ -31,16 +31,16 @@
                             "sampleContextDir": "app",
                             "sampleRef": "dotnet-6.0"
                         },
-				        "from": {
-					        "kind": "DockerImage",
-					        "name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
-				        },
-				        "generation": null,
-				        "imagePullPolicy": "IfNotPresent",
-				        "importPolicy": {},
-				        "referencePolicy": {
-					        "type": "Local"
-				        }
+			"from": {
+				"kind": "DockerImage",
+				"name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
+			},
+			"generation": null,
+			"imagePullPolicy": "IfNotPresent",
+			"importPolicy": {},
+			"referencePolicy": {
+				"type": "Local"
+			}
                     },
                     {
                         "name": "8.0-ubi8",
@@ -54,16 +54,16 @@
                             "sampleContextDir": "app",
                             "sampleRef": "dotnet-6.0"
                         },
-				        "from": {
-					        "kind": "DockerImage",
-					        "name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
-				        },
-				        "generation": null,
-				        "imagePullPolicy": "IfNotPresent",
-				        "importPolicy": {},
-				        "referencePolicy": {
-					        "type": "Local"
-				        }
+			"from": {
+				"kind": "DockerImage",
+				"name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
+			},
+			"generation": null,
+			"imagePullPolicy": "IfNotPresent",
+			"importPolicy": {},
+			"referencePolicy": {
+				"type": "Local"
+			}
                     },   
                     {
                         "name": "7.0-ubi8",
@@ -77,16 +77,16 @@
                             "sampleContextDir": "app",
                             "sampleRef": "dotnet-6.0"
                         },
-				        "from": {
-					        "kind": "DockerImage",
-					        "name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
-				        },
-				        "generation": null,
-				        "imagePullPolicy": "IfNotPresent",
-				        "importPolicy": {},
-				        "referencePolicy": {
-					        "type": "Local"
-				        }
+			"from": {
+				"kind": "DockerImage",
+				"name": "registry.access.redhat.com/ubi8/dotnet-80:8.0-11"
+			},
+			"generation": null,
+			"imagePullPolicy": "IfNotPresent",
+			"importPolicy": {},
+			"referencePolicy": {
+				"type": "Local"
+			}
                     },
                     {
                         "name": "7.0-ubi8",
@@ -101,16 +101,16 @@
                             "sampleRef": "dotnet-7.0",
                             "version": "7.0"
                         },
-				        "from": {
-					        "kind": "DockerImage",
-					        "name": "registry.access.redhat.com/ubi8/dotnet-70-runtime:7.0-32"
-				        },
-				        "generation": null,
-				        "imagePullPolicy": "IfNotPresent",
-				        "importPolicy": {},
-				        "referencePolicy": {
-					        "type": "Local"
-				        }
+			"from": {
+				"kind": "DockerImage",
+				"name": "registry.access.redhat.com/ubi8/dotnet-70-runtime:7.0-32"
+			},
+			"generation": null,
+			"imagePullPolicy": "IfNotPresent",
+			"importPolicy": {},
+			"referencePolicy": {
+				"type": "Local"
+			}
                     },                
                     {
                         "name": "6.0-ubi8",
@@ -125,16 +125,16 @@
                             "sampleRef": "dotnet-6.0",
                             "version": "6.0"
                         },
-				        "from": {
-					        "kind": "DockerImage",
-					        "name": "registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0-55"
-				        },
-				        "generation": null,
-				        "imagePullPolicy": "IfNotPresent",
-				        "importPolicy": {},
-				        "referencePolicy": {
-					        "type": "Local"
-				        }
+			"from": {
+				"kind": "DockerImage",
+				"name": "registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0-55"
+			},
+			"generation": null,
+			"imagePullPolicy": "IfNotPresent",
+			"importPolicy": {},
+			"referencePolicy": {
+				"type": "Local"
+			}
                     },
                     {
                         "name": "5.0-ubi8",
