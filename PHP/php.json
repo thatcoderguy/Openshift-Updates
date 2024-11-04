@@ -49,7 +49,7 @@
 				},
 				"from": {
 					"kind": "DockerImage",
-					"name": "registry.redhat.io/rhel8/php-74:1-131"
+					"name": "binksey/binksey/php-mssql:7.4-rhel8"
 				},
 				"generation": null,
 				"importPolicy": {},
