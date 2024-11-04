@@ -40,7 +40,7 @@
                         }
                     },
                     {
-                        "name": "latest",
+                        "name": "8.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET (Latest)",
                             "description": "Build and run .NET applications. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/6.0/build/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of .NET available on OpenShift, including major versions updates.",
@@ -60,7 +60,7 @@
                         }
                     },         
                     {
-                        "name": "8.0-ubi8",
+                        "name": "7.0-ubi8",
                         "annotations": {
                             "openshift.io/display-name": ".NET (Latest)",
                             "description": "Build and run .NET applications. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/6.0/build/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of .NET available on OpenShift, including major versions updates.",
