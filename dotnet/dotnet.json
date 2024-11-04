@@ -80,7 +80,7 @@
                         },
 			"from": {
 				"kind": "DockerImage",
-				"name": "registry.access.redhat.com/ubi8/dotnet-70-runtime:7.0-32"
+				"name": "registry.access.redhat.com/ubi8/dotnet-70:7.0-32"
 			},
 			"generation": null,
 			"imagePullPolicy": "IfNotPresent",
@@ -104,7 +104,7 @@
                         },
 			"from": {
 				"kind": "DockerImage",
-				"name": "registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0-55"
+				"name": "registry.access.redhat.com/ubi8/dotnet-60:6.0-55"
 			},
 			"generation": null,
 			"imagePullPolicy": "IfNotPresent",
@@ -131,7 +131,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.access.redhat.com/ubi8/dotnet-50-runtime:5.0-39"
+                            "name": "registry.access.redhat.com/ubi8/dotnet-50:5.0-39"
                         }
                     },
                     {
@@ -152,7 +152,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.access.redhat.com/ubi8/dotnet-31-runtime:3.1-61"
+                            "name": "registry.access.redhat.com/ubi8/dotnet-31:3.1-61"
                         }
                     }
                 ]
